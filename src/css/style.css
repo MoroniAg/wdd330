@@ -241,6 +241,21 @@ button {
   grid-column: 3;
 }
 
+.cart-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 0.5rem 0;
+}
+
+.cart-total {
+  margin: 0;
+  font-weight: 700;
+}
+
+.hide {
+  display: none;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
