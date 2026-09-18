@@ -22,7 +22,7 @@ export default class ProductDetails {
         container.innerHTML = `
       <h3>${this.product.Brand}</h3>
       <h2 class="divider">${this.product.Name}</h2>
-      <img class="divider" src="${this.product.Image}" alt="${this.product.Name}" />
+      <img class="divider" src="${this.product.PrimaryLarge}" alt="${this.product.Name}" />
       <p class="product-card__price">$${this.product.Price}</p>
       <p class="product__color">${this.product.Color}</p>
       <p class="product__description">${this.product.Description}</p>
