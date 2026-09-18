@@ -230,6 +230,14 @@ button {
   font-size: 1em;
 }
 
+.discount-flag {
+  color: red;
+  font-weight: bold;
+  font-size: var(--small-font);
+  text-align: center;
+  margin: 0.5em 0;
+}
+
 /* End product list card */
 
 .product-detail {
