@@ -118,7 +118,9 @@ button {
 
 /* Cart icon styles */
 .cart {
-  padding-top: 1em;
+  /* padding-top: 1em; */
+  padding-left: 1rem;
+  padding-right: 1rem;
   position: relative;
   text-align: center;
 }
@@ -129,6 +131,13 @@ button {
 
 .cart:hover svg {
   fill: gray;
+}
+
+
+.actions{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 /* End cart icon styles */
@@ -322,5 +331,90 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+/* Checkout Styles */
+.checkout-container {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.checkout-form {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--light-grey);
+}
+
+.checkout-form h2 {
+  font-family: var(--font-headline);
+  margin-bottom: 1.5rem;
+  color: var(--secondary-color);
+}
+
+fieldset {
+  border: 1px solid var(--light-grey);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+  color: var(--tertiary-color);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.25rem;
+  font-size: var(--small-font);
+}
+
+.form-group input {
+  padding: 0.5rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.order-summary {
+  background-color: white;
+  padding: 2rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.order-summary h2 {
+  font-family: var(--font-headline);
+  margin-bottom: 1rem;
+}
+
+#summary-details p {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.total {
+  font-weight: bold;
+  font-size: var(--large-font);
+  color: var(--tertiary-color);
+}
+
+@media screen and (max-width: 768px) {
+  .checkout-container {
+    grid-template-columns: 1fr;
+  }
 }
 
