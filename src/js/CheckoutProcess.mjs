@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, alertMessage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 export default class CheckoutProcess {
@@ -32,7 +32,7 @@ export default class CheckoutProcess {
 
   async checkout(form) {
     if (!form.checkValidity()) {
-      alert("Please fill out all required fields.");
+      form.reportValidity();
       return;
     }
 
@@ -59,14 +59,16 @@ export default class CheckoutProcess {
     };
 
     try {
-      const response = await this.services.checkout(order);
-      console.log("Order submitted:", response);
+      await this.services.checkout(order);
       localStorage.removeItem("so-cart");
-      form.reset();
-      alert("Order placed successfully!");
+      window.location.assign("success.html");
     } catch (error) {
       console.error(error);
-      alert("There was an error placing your order.");
+      if (error.name === "servicesError") {
+        alertMessage(`Order Error: ${error.message}`);
+      } else {
+        alertMessage("There was an error placing your order.");
+      }
     }
   }
 
