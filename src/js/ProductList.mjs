@@ -1,9 +1,18 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-    const discountFlag = product.FinalPrice < product.SuggestedRetailPrice 
-        ? `<p class="discount-flag">Discounted!</p>` 
-        : "";
+    let discountFlag = "";
+    if (product.FinalPrice < product.SuggestedRetailPrice) {
+        const savings = product.SuggestedRetailPrice - product.FinalPrice;
+        const percentOff = Math.round((savings / product.SuggestedRetailPrice) * 100);
+        
+        // Display percentage if it's significant, otherwise display dollar amount
+        const label = percentOff >= 10 
+            ? `${percentOff}% Off` 
+            : `$${savings.toFixed(2)} Off`;
+            
+        discountFlag = `<p class="discount-flag">${label}</p>`;
+    }
 
     return `<li class="product-card">
     <a href="product_pages/index.html?product=${product.Id}">
