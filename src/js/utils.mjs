@@ -67,3 +67,26 @@ export async function loadHeaderFooter() {
 
 }
 
+export function alertMessage(message, scroll = true) {
+  const main = document.querySelector("main");
+  if (!main) return;
+
+  const alertElement = document.createElement("div");
+  alertElement.className = "alert-message";
+  alertElement.textContent = message;
+
+  main.prepend(alertElement);
+
+  if (scroll) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  // Auto-remove the alert after 5 seconds
+  setTimeout(() => {
+    alertElement.remove();
+  }, 5000);
+}
+
