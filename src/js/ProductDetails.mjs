@@ -11,8 +11,11 @@ export default class ProductDetails {
 
         this.product = await this.dataSource.findProductById(this.productId);
         this.renderProductDetails();
-        document.getElementById('addToCart')
-            .addEventListener('click', this.addProductToCart.bind(this));
+        document.getElementById("addToCart")
+            .addEventListener("click", this.addProductToCart.bind(this));
+        document.getElementById("addToWishlist")
+            .addEventListener("click", this.toggleWishlist.bind(this));
+        this.updateWishlistButton();
     }
 
     renderProductDetails() {
@@ -28,6 +31,7 @@ export default class ProductDetails {
       <p class="product__description">${this.product.Description}</p>
       <div class="product-detail__add">
         <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
+        <button id="addToWishlist" class="secondary-button" type="button" aria-pressed="false">Add to Wishlist</button>
       </div>
     `;
     }
@@ -38,6 +42,30 @@ export default class ProductDetails {
         setLocalStorage("so-cart", cart);
         alertMessage(`${this.product.Name} has been added to your cart!`, false);
     }
+
+    toggleWishlist() {
+        const wishlist = getLocalStorage("so-wishlist") || [];
+        const isSaved = wishlist.some((item) => item.Id === this.product.Id);
+        const updatedWishlist = isSaved
+            ? wishlist.filter((item) => item.Id !== this.product.Id)
+            : [...wishlist, this.product];
+
+        setLocalStorage("so-wishlist", updatedWishlist);
+        this.updateWishlistButton();
+        alertMessage(
+            isSaved
+                ? `${this.product.Name} has been removed from your wishlist.`
+                : `${this.product.Name} has been added to your wishlist.`,
+            false
+        );
+    }
+
+    updateWishlistButton() {
+        const wishlist = getLocalStorage("so-wishlist") || [];
+        const isSaved = wishlist.some((item) => item.Id === this.product.Id);
+        const button = document.getElementById("addToWishlist");
+
+        button.textContent = isSaved ? "Remove from Wishlist" : "Add to Wishlist";
+        button.setAttribute("aria-pressed", String(isSaved));
+    }
 }
-
-
