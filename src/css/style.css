@@ -110,6 +110,12 @@ button {
   cursor: pointer;
 }
 
+.secondary-button {
+  background-color: white;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -283,6 +289,36 @@ button {
 
 .product-detail img {
   width: 100%;
+}
+
+.product-detail__add {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.wishlist-link {
+  align-self: center;
+  color: var(--secondary-color);
+  font-weight: 700;
+  padding: 0.5rem;
+}
+
+.wishlist-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  grid-column: 2 / -1;
+  padding: 0.5rem;
+}
+
+.wishlist-actions button {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.wishlist-empty {
+  padding: 1rem 0;
+  text-align: center;
 }
 
 /* Start cart list card styles */
@@ -467,4 +503,3 @@ legend {
     grid-template-columns: 1fr;
   }
 }
-
